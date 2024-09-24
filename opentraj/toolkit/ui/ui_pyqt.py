@@ -9,13 +9,13 @@ import time
 # from parser.parser_gc  import ParserGC
 # from parser.parser_hermes import ParserHermes
 
-from toolkit.loaders.loader_eth import load_eth
-from toolkit.loaders.loader_crowds import load_crowds
-from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
-from toolkit.loaders.loader_gcs import load_gcs
-from toolkit.loaders.loader_hermes import load_bottleneck
+from opentraj.toolkit.loaders.loader_eth import load_eth
+from opentraj.toolkit.loaders.loader_crowds import load_crowds
+from opentraj.toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
+from opentraj.toolkit.loaders.loader_gcs import load_gcs
+from opentraj.toolkit.loaders.loader_hermes import load_bottleneck
 
-from toolkit.ui.pyqt.qtui.opentrajui import OpenTrajUI
+from opentraj.toolkit.ui.pyqt.qtui.opentrajui import OpenTrajUI
 
 
 def error_msg(msg):
@@ -80,7 +80,8 @@ class Play:
             cv2.circle(self.bg_im, (pos[1], pos[0]), radius, color, width)
 
     def play(self, traj_dataset, Hinv, media_file):
-        timestamps = sorted(traj_dataset.__t_p_dict__.keys())
+        # breakpoint()
+        timestamps = sorted(traj_dataset.data["frame_id"])
 
         if os.path.exists(media_file):
             if self.is_a_video(media_file):
@@ -91,8 +92,10 @@ class Play:
         ids_t = []
         # for t in range(timestamps[0], timestamps[-1]):
         # for t in range(0, timestamps[-1]):
-        t = 0
+        t = 0 #timestamps[0]
         pause = False
+        if not self.gui_mode_pyqt:
+            cv2.namedWindow('OpenTraj (Press ESC for exit)', cv2.WINDOW_NORMAL)
         while True:
             if self.is_a_video(media_file) and not pause:
                 ret, ref_im = cap.read()
@@ -100,19 +103,31 @@ class Play:
             ref_im_copy = np.copy(ref_im)
             self.set_background_im(ref_im, t)
             if t in timestamps:
-                xys_t = traj_dataset.__t_p_dict__[t]
-                ids_t = traj_dataset.__t_id_dict__[t]
+                # traj_dataset.get_frames([t])
+                frame_data = traj_dataset.data[traj_dataset.data["frame_id"] == t]
+                frame_data = frame_data.sort_values(by='agent_id')
+                # ids_t = sorted(frame_data["agent_id"])
+                ids_t = frame_data["agent_id"]
+                xys_t = frame_data[["pos_x","pos_y"]].values
+
+                
+                # xys_t = traj_dataset.__t_p_dict__[t]
+                # ids_t = traj_dataset.__t_id_dict__[t]
+                # breakpoint()
 
             for i, id in enumerate(ids_t):
                 xy_i = np.array(xys_t[i])
+                # xy_i = np.ones((1,2)) * xys_t[i]
+                # breakpoint()
                 UV_i = self.to_image_frame(Hinv, xy_i)
 
                 # fetch entire trajectory
-                traj_i = traj_dataset.__id_p_dict__[id]
+                # traj_i = traj_dataset.__id_p_dict__[id]
+                traj_i = traj_dataset.data[traj_dataset.data["agent_id"] == id][["pos_x","pos_y"]].values
                 TRAJ_i = self.to_image_frame(Hinv, traj_i)
 
                 self.draw_trajectory(id, TRAJ_i, (255, 255, 0), 2)
-                self.draw_agent(id, (UV_i[1], UV_i[0]), 5, (0, 0, 255), 2)
+                self.draw_agent(id, (UV_i[0], UV_i[1]), 5, (0, 0, 255), 2)
 
             # if not ids_t:
             #     print('No agent')
@@ -126,8 +141,7 @@ class Play:
                 pause = self.qtui.pause
                 time.sleep(delay_ms/1000.)
             else:
-                # cv2.namedWindow('OpenTraj (Press ESC for exit)', cv2.WINDOW_NORMAL)
-                # cv2.imshow('OpenTraj (Press ESC for exit)', ref_im_copy)
+                cv2.imshow('OpenTraj (Press ESC for exit)', self.bg_im)
                 key = cv2.waitKey(delay_ms * (1 - pause)) & 0xFF
                 if key == 27:  # press ESCAPE to quit
                     break
@@ -205,10 +219,12 @@ if __name__ == '__main__':
     opentraj_root = args.data_root
     traj_dataset = None
 
+    sampling_rate=0.001
+
     # #============================ ETH =================================
     if args.dataset == 'eth':
         annot_file = os.path.join(opentraj_root, 'ETH/seq_eth/obsmat.txt')
-        traj_dataset = load_eth(annot_file)
+        traj_dataset = load_eth(annot_file, sampling_rate=sampling_rate)
         homog_file = os.path.join(opentraj_root, 'ETH/seq_eth/H.txt')
         if args.background == 'image':
             media_file = os.path.join(opentraj_root, 'ETH/seq_eth/reference.png')
@@ -219,7 +235,7 @@ if __name__ == '__main__':
 
     elif args.dataset == 'hotel':
         annot_file = os.path.join(opentraj_root, 'ETH/seq_hotel/obsmat.txt')
-        traj_dataset = load_eth(annot_file)
+        traj_dataset = load_eth(annot_file, sampling_rate=sampling_rate)
         homog_file = os.path.join(opentraj_root, 'ETH/seq_hotel/H.txt')
         # media_file = os.path.join(opentraj_root, 'ETH/seq_hotel/reference.png')
         media_file = os.path.join(opentraj_root, 'ETH/seq_hotel/video.avi')

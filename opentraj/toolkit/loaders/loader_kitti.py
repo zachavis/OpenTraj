@@ -5,7 +5,7 @@
 import pandas as pd
 import numpy as np
 import glob
-from toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajdataset import TrajDataset
 import math
 from math import cos, sin, tan, pi
 from copy import deepcopy

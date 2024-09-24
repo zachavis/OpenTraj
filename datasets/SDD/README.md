@@ -42,7 +42,7 @@ In order to the load the datasets, we provided the [`loader_sdd.py`](../../toolk
 
 ```python
 import os, yaml
-from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
+from opentraj.toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
 
 scene_name = 'hyang'
 scene_video_id = 'video6'

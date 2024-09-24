@@ -4,7 +4,7 @@
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from toolkit.utils.kalman_smoother import KalmanModel
+from opentraj.toolkit.utils.kalman_smoother import KalmanModel
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
@@ -92,7 +92,33 @@ class TrajDataset:
             self.data = self.data.loc[(self.data["frame_id"] % sampling_rate) == 0]
             self.data = self.data.reset_index()
         elif sampling_rate < (1-1E-2):
+            # breakpoint()
             # TODO: interpolation
+            agents = sorted(self.data["agent_id"].unique())
+            new_dfs = []
+            for id in agents:
+                sub_df = self.data[self.data["agent_id"] == id].copy() #[["pos_x","pos_y"]].values
+    
+                scene_id = sub_df.iloc[0]["scene_id"]
+                label = sub_df.iloc[0]["label"]
+                # Generate new frame numbers based on the interpolation rate
+                frames = np.arange(sub_df['frame_id'].min(), sub_df['frame_id'].max() + 1, step=1 if 1 > 0 else 1)
+                
+                # Interpolating all columns (pos_x, pos_y, vel_x, vel_y, vel_z)
+                sub_df = sub_df.set_index('frame_id').reindex(frames).interpolate(method='linear').reset_index()
+                
+                # Fill id column with the current uid
+                sub_df["agent_id"] = id
+                sub_df["scene_id"] = scene_id
+                sub_df["label"] = label
+                
+                new_dfs.append(sub_df)
+
+            # breakpoint()
+            # Concatenate all individual id interpolated dataframes
+            self.data = pd.concat(new_dfs).sort_values(by=['agent_id', 'frame_id']).reset_index(drop=True)
+    
+
             pass
         else:pass
 

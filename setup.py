@@ -1,12 +1,12 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
- setup(
+setup(
    name='opentraj',
    version='1.0',
    author='Javad Amirian',
    author_email='amiryan.j@gmail.com',
-   packages=['opentraj'],
-   scripts=['bin/script1','bin/script2'],
+   packages=find_packages(),
+#    scripts=['bin/script1','bin/script2'],
    url='https://github.com/crowdbotp/OpenTraj',
    license='MIT',
    description='Tools for analyzing trajectory datasets',
@@ -14,7 +14,7 @@ from setuptools import setup
    install_requires=[
         "numpy",
         "scipy",
-        "sklearn",
+        "scikit-learn",
         "pandas",
         "tqdm",
         "pykalman", 

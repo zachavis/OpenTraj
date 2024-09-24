@@ -28,7 +28,7 @@ In order to the load the datasets, we provided the [`loader_ind.py`](../../toolk
 
 ```python
 import os
-from toolkit.loaders.loader_ind import load_ind
+from opentraj.toolkit.loaders.loader_ind import load_ind
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 ind_root = os.path.join(OPENTRAJ_ROOT, 'datasets/InD/inD-dataset-v1.0/data')
 file_id = 0 # range(0, 33)

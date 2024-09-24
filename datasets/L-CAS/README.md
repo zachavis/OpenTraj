@@ -78,7 +78,7 @@ In order to the load the datasets, we provided the [`loader_lcas.py`](../../tool
 
 ```python
 import os
-from toolkit.loaders.loader_lcas import load_lcas
+from opentraj.toolkit.loaders.loader_lcas import load_lcas
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 lcas_root = os.path.join(OPENTRAJ_ROOT, 'datasets/L-CAS/data')
 traj_datasets = load_lcas(lcas_root, title="L-CAS", use_kalman=False, sampling_rate=1)

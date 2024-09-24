@@ -24,7 +24,7 @@ In order to the load the datasets, we provided the [`loader_town.py`](../../tool
 
 ```python
 import os
-from toolkit.loaders.loader_town import load_town_center
+from opentraj.toolkit.loaders.loader_town import load_town_center
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 traj_ds = load_town_center(OPENTRAJ_ROOT + 'datasets/Town-Center/TownCentre-groundtruth-top.txt',
                            calib_path=OPENTRAJ_ROOT + 'datasets/Town-Center/TownCentre-calibration-ci.txt',

@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 import plotly.express as px
 import plotly.graph_objs as go
-from toolkit.benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
-from toolkit.benchmarking.indicators.motion_properties import speed_avg_of_trajs, acceleration_of_tarjs
+from opentraj.toolkit.benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
+from opentraj.toolkit.benchmarking.indicators.motion_properties import speed_avg_of_trajs, acceleration_of_tarjs
 from matplotlib import cm
 
 if __name__ == '__main__':

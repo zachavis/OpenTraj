@@ -7,22 +7,22 @@ import yaml
 import numpy as np
 import pandas as pd
 
-from toolkit.core.trajdataset import TrajDataset, merge_datasets
-from toolkit.loaders.loader_edinburgh import load_edinburgh
-from toolkit.loaders.loader_eth import load_eth
-from toolkit.loaders.loader_crowds import load_crowds
-from toolkit.loaders.loader_gcs import load_gcs
-from toolkit.loaders.loader_hermes import load_bottleneck
-from toolkit.loaders.loader_ind import load_ind
-from toolkit.loaders.loader_kitti import load_kitti
-from toolkit.loaders.loader_lcas import load_lcas
-from toolkit.loaders.loader_pets import load_pets
-from toolkit.loaders.loader_town import load_town_center
-from toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
-from toolkit.loaders.loader_wildtrack import load_wildtrack
-from toolkit.loaders.loader_trajnet import load_trajnet
-from toolkit.core.trajlet import split_trajectories
-from toolkit.baselines.constvel import const_vel
+from opentraj.toolkit.core.trajdataset import TrajDataset, merge_datasets
+from opentraj.toolkit.loaders.loader_edinburgh import load_edinburgh
+from opentraj.toolkit.loaders.loader_eth import load_eth
+from opentraj.toolkit.loaders.loader_crowds import load_crowds
+from opentraj.toolkit.loaders.loader_gcs import load_gcs
+from opentraj.toolkit.loaders.loader_hermes import load_bottleneck
+from opentraj.toolkit.loaders.loader_ind import load_ind
+from opentraj.toolkit.loaders.loader_kitti import load_kitti
+from opentraj.toolkit.loaders.loader_lcas import load_lcas
+from opentraj.toolkit.loaders.loader_pets import load_pets
+from opentraj.toolkit.loaders.loader_town import load_town_center
+from opentraj.toolkit.loaders.loader_sdd import load_sdd, load_sdd_dir
+from opentraj.toolkit.loaders.loader_wildtrack import load_wildtrack
+from opentraj.toolkit.loaders.loader_trajnet import load_trajnet
+from opentraj.toolkit.core.trajlet import split_trajectories
+from opentraj.toolkit.baselines.constvel import const_vel
 
 all_dataset_names = [
     'ETH-Univ',

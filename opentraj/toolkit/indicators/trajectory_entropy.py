@@ -11,8 +11,8 @@ import seaborn as sns
 from random import sample
 import matplotlib.pyplot as plt
 from scipy.stats import multivariate_normal
-from toolkit.core.trajlet import split_trajectories
-from toolkit.test.load_all import all_dataset_names, get_trajlets
+from opentraj.toolkit.core.trajlet import split_trajectories
+from opentraj.toolkit.test.load_all import all_dataset_names, get_trajlets
 
 
 def Gauss_K(x, y, h):
@@ -240,7 +240,7 @@ def run(opentraj_root, output_dir):
 
 
 if __name__ == '__main__':
-    from toolkit.benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
+    from opentraj.toolkit.benchmarking.load_all_datasets import get_datasets, get_trajlets, all_dataset_names
 
     opentraj_root = sys.argv[1]
     output_dir = sys.argv[2]

@@ -53,7 +53,7 @@ In order to the load the datasets, we provided the [`loader_crowds.py`](../../to
 
 ```python
 import os
-from toolkit.loaders.loader_crowds import load_crowds
+from opentraj.toolkit.loaders.loader_crowds import load_crowds
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 zara01_annot = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara01/annotation.vsp')
 zara01_H_file = os.path.join(OPENTRAJ_ROOT, 'datasets/UCY/zara01/H.txt')

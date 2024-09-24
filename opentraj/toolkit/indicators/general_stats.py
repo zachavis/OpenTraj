@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 import datetime
 
-from toolkit.core.trajdataset import TrajDataset
-from toolkit.core.trajlet import split_trajectories
+from opentraj.toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajlet import split_trajectories
 
 
 def num_scenes(dataset: TrajDataset):
@@ -55,7 +55,7 @@ def run(datasets, output_dir):
 
 
 if __name__ == "__main__":
-    from toolkit.test.load_all import get_datasets, all_dataset_names
+    from opentraj.toolkit.test.load_all import get_datasets, all_dataset_names
 
     opentraj_root = sys.argv[1]
     dataset_names = all_dataset_names

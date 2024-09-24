@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use("TkAgg")
-from toolkit.ui.ui_projectpoint import to_image_frame
-from toolkit.ui.ui_constants import RED_COLOR
+from opentraj.toolkit.ui.ui_projectpoint import to_image_frame
+from opentraj.toolkit.ui.ui_constants import RED_COLOR
 
 
 def _visualize_trajlet_on_frame(trajlet, bg_im, homog, color_rgb=RED_COLOR, width=2):

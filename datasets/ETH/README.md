@@ -60,7 +60,7 @@ In order to the load the datasets, we provided the [`loader_eth.py`](https://git
 
 ```python
 import os
-from toolkit.loaders.loader_eth import load_eth
+from opentraj.toolkit.loaders.loader_eth import load_eth
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 traj_dataset = load_eth(os.path.join(OPENTRAJ_ROOT, "datasets/ETH/seq_eth/obsmat.txt"))
 trajs = traj_dataset.get_trajectories()

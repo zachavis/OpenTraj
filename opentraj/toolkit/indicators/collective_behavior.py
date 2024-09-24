@@ -1,6 +1,6 @@
 import sys
-from toolkit.core.trajdataset import TrajDataset
-from toolkit.core.trajlet import split_trajectories
+from opentraj.toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajlet import split_trajectories
 
 
 # TODO: to be added later
@@ -18,7 +18,7 @@ def run():
 
 
 if __name__ == "__main__":
-    from toolkit.test.load_all import get_datasets, all_dataset_names
+    from opentraj.toolkit.test.load_all import get_datasets, all_dataset_names
     run()
 
 

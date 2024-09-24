@@ -51,7 +51,7 @@ In order to the load the datasets, we provided the [`loader_wildtrack.py`](../..
 
 ```python
 import os
-from toolkit.loaders.loader_wildtrack import load_wildtrack
+from opentraj.toolkit.loaders.loader_wildtrack import load_wildtrack
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 wildtrack_root = os.path.join(OPENTRAJ_ROOT, 'datasets/Wild-Track/annotations_positions')
 traj_datasets = load_wildtrack(wildtrack_root, title='WildTrack', use_kalman=False, sampling_rate=1) 

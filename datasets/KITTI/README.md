@@ -11,7 +11,7 @@ In order to the load the datasets, we provided the [`loader_kitti.py`](../../too
 
 ```python
 import os
-from toolkit.loaders.loader_kitti import load_kitti
+from opentraj.toolkit.loaders.loader_kitti import load_kitti
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 kitti_root = 
 traj_dataset = load_kitti(os.path.join(OPENTRAJ_ROOT, 'datasets/KITTI/data'), title='kitti', use_kalman=False, sampling_rate=1)

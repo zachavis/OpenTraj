@@ -5,8 +5,8 @@ import cv2
 import os
 import argparse
 import matplotlib.pyplot as plt
-from toolkit.loaders.loader_metafile import load_metafile
-from toolkit.ui.ui_projectpoint import to_image_frame
+from opentraj.toolkit.loaders.loader_metafile import load_metafile
+from opentraj.toolkit.ui.ui_projectpoint import to_image_frame
 import matplotlib
 matplotlib.use('TkAgg')
 

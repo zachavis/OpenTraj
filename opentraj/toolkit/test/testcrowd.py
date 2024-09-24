@@ -1,4 +1,4 @@
-from toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajdataset import TrajDataset
 from random import random
 
 def run():

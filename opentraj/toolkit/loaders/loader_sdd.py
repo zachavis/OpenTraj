@@ -6,7 +6,7 @@ import glob
 from math import ceil
 import yaml
 import pandas as pd
-from toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajdataset import TrajDataset
 
 
 def load_sdd(path, **kwargs):

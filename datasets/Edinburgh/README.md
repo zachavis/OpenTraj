@@ -194,7 +194,7 @@ In order to the load the datasets, we provided the [`loader_edinburgh.py`](../..
 
 ```python
 import os, yaml
-from toolkit.loaders.loader_edinburgh import load_edinburgh
+from opentraj.toolkit.loaders.loader_edinburgh import load_edinburgh
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 edinburgh_dir = 
 selected_day = '01Sep'

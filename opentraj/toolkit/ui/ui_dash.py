@@ -14,7 +14,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 
-from toolkit.loaders.loader_crowds import load_crowds
+from opentraj.toolkit.loaders.loader_crowds import load_crowds
 from opentraj.toolkit.test.load_all import all_dataset_names, get_datasets, get_trajlets
 
 # Application

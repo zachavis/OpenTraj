@@ -1,7 +1,7 @@
-from toolkit.loaders.loader_eth import load_eth
-from toolkit.benchmarking.metrics.individual import motion
-from toolkit.benchmarking.metrics.individual import path_length
-from toolkit.benchmarking.metrics.agent_to_agent import pcf, distance
+from opentraj.toolkit.loaders.loader_eth import load_eth
+from opentraj.toolkit.benchmarking.metrics.individual import motion
+from opentraj.toolkit.benchmarking.metrics.individual import path_length
+from opentraj.toolkit.benchmarking.metrics.agent_to_agent import pcf, distance
 import matplotlib.pyplot as plt
 import numpy as np
 

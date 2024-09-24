@@ -101,7 +101,7 @@ In order to the load the data, we provided the [`loader_hermes.py`](../../toolki
 
 ```python
 import os
-from toolkit.loaders.loader_hermes import load_bottleneck
+from opentraj.toolkit.loaders.loader_hermes import load_bottleneck
 serie = 'Corridor-2D'
 exp = 'bo-360-160-160'
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj

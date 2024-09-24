@@ -11,11 +11,11 @@ import pickle
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import pdist,squareform
-from toolkit.loaders.loader_eth import load_eth
-from toolkit.core.trajdataset import TrajDataset
-from toolkit.core.trajlet import split_trajectories
-from toolkit.test.load_all import get_datasets, all_dataset_names
-from toolkit.utils.histogram_sampler import normalize_samples_with_histogram
+from opentraj.toolkit.loaders.loader_eth import load_eth
+from opentraj.toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajlet import split_trajectories
+from opentraj.toolkit.test.load_all import get_datasets, all_dataset_names
+from opentraj.toolkit.utils.histogram_sampler import normalize_samples_with_histogram
 from copy import deepcopy
 
 

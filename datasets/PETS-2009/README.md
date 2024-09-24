@@ -50,7 +50,7 @@ In order to the load the datasets, we provided the [`loader_pets.py`](../../tool
 
 ```python
 import os
-from toolkit.loaders.loader_pets import load_pets
+from opentraj.toolkit.loaders.loader_pets import load_pets
 # fixme: replace OPENTRAJ_ROOT with the address to root folder of OpenTraj
 pets_root = os.path.join(OPENTRAJ_ROOT, 'datasets/PETS-2009/data')
 datasets = load_pets(os.path.join(pets_root, 'annotations/PETS2009-S2L1.xml'),  

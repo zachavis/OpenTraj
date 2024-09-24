@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
 import seaborn as sns
 
-from toolkit.core.trajdataset import TrajDataset
-from toolkit.core.trajlet import split_trajectories
-from toolkit.test.load_all import get_datasets, all_dataset_names, get_trajlets
+from opentraj.toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajlet import split_trajectories
+from opentraj.toolkit.test.load_all import get_datasets, all_dataset_names, get_trajlets
 
 
 

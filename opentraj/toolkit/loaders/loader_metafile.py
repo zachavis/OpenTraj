@@ -6,9 +6,9 @@ import json
 import os
 import sys
 
-from toolkit.loaders.loader_eth import load_eth
-from toolkit.loaders.loader_crowds import load_crowds
-from toolkit.loaders.loader_gcs import load_gcs
+from opentraj.toolkit.loaders.loader_eth import load_eth
+from opentraj.toolkit.loaders.loader_crowds import load_crowds
+from opentraj.toolkit.loaders.loader_gcs import load_gcs
 
 
 def load_metafile(opentraj_root, metafile, **kwargs):

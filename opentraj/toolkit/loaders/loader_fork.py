@@ -1,7 +1,7 @@
 # Author: Javad Amirian
 # Email: amiryan.j@gmail.com
 
-from toolkit.core.trajdataset import TrajDataset
+from opentraj.toolkit.core.trajdataset import TrajDataset
 import json
 import pandas as pd
 

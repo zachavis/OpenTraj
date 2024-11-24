@@ -4,7 +4,8 @@
 import numpy as np
 import pandas as pd
 from opentraj.toolkit.core.trajdataset import TrajDataset
-
+from pathlib import Path
+import re
 
 def load_eth(path, **kwargs):
     traj_dataset = TrajDataset()
@@ -36,6 +37,14 @@ def load_eth(path, **kwargs):
 
     sampling_rate = kwargs.get('sampling_rate', 1)
     use_kalman = kwargs.get('use_kalman', False)
-    traj_dataset.postprocess(fps=fps, sampling_rate=sampling_rate, use_kalman=use_kalman)
+    
+    groups_path = Path(path).parent / "groups.txt"
+    with open(groups_path, 'r') as file: lines = file.readlines()
+    group_data = []
+    for line in lines:
+        l = list(map(int, re.findall('\d+',line)))
+        group_data.append(l)
+        
+    traj_dataset.postprocess(fps=fps, sampling_rate=sampling_rate, use_kalman=use_kalman, group_data=group_data)
 
     return traj_dataset

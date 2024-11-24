@@ -38,7 +38,7 @@ class TrajDataset:
         # FixMe ?
         #  self.trajectories_lazy = []
 
-    def postprocess(self, fps, sampling_rate=1, use_kalman=False):
+    def postprocess(self, fps, sampling_rate=1, use_kalman=False, group_data=None):
         """
         This function should be called after loading the data by loader
         It performs the following steps:
@@ -83,7 +83,13 @@ class TrajDataset:
         agent_ids = pd.unique(self.data["agent_id"])
         for agent_id in agent_ids:
             if agent_id not in self.groupmates:
-                self.groupmates[agent_id] = []
+                self.groupmates[int(agent_id)] = []
+        if group_data is not None:
+            for group in group_data:
+                for id in group:
+                    self.groupmates[id] = group
+
+        
 
         # down/up sampling frames
         if sampling_rate >= 2:
@@ -105,8 +111,9 @@ class TrajDataset:
                 frames = np.arange(sub_df['frame_id'].min(), sub_df['frame_id'].max() + 1, step=1 if 1 > 0 else 1)
                 
                 # Interpolating all columns (pos_x, pos_y, vel_x, vel_y, vel_z)
-                sub_df = sub_df.set_index('frame_id').reindex(frames).interpolate(method='linear').reset_index()
-                
+                # sub_df = sub_df.infer_objects(copy=False)
+                sub_df = sub_df[["frame_id", "agent_id", "pos_x", "pos_y", "vel_x", "vel_y", "timestamp"]].set_index('frame_id').reindex(frames).interpolate(method='linear').reset_index()
+
                 # Fill id column with the current uid
                 sub_df["agent_id"] = id
                 sub_df["scene_id"] = scene_id

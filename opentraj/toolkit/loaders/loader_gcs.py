@@ -2,6 +2,7 @@
 # Email: amiryan.j@gmail.com
 
 import json
+from tqdm import tqdm
 from math import ceil
 
 import os
@@ -60,7 +61,8 @@ def load_gcs(path, **kwargs):
     tr0_ = trajs[0]
     tr1_ = trajs[1]
 
-    for ii, tr in enumerate(trajs):
+    pbar = tqdm(enumerate(trajs), total=len(trajs))
+    for ii, tr in pbar:
         if len(tr) < 2: continue
         # interpolate frames (2x up-sampling)
         interp_F = np.arange(tr["frame_id"].iloc[0], tr["frame_id"].iloc[-1], 10).astype(int)
@@ -68,12 +70,16 @@ def load_gcs(path, **kwargs):
         interp_X_ = interp_X(interp_F)
         interp_Y = interp1d(tr["frame_id"], tr["pos_y"], kind='linear')
         interp_Y_ = interp_Y(interp_F)
-        agent_id = tr["agent_id"].iloc[0]
-        print(agent_id)
-        raw_dataset = raw_dataset.append(pd.DataFrame({"frame_id": interp_F,
-                                                       "agent_id": agent_id,
-                                                       "pos_x": interp_X_,
-                                                       "pos_y": interp_Y_}))
+        agent_id = int(tr["agent_id"].iloc[0])
+        # print(agent_id)
+        pbar.set_description(f"Agent {agent_id}")
+        raw_dataset = pd.concat([raw_dataset,
+                                 pd.DataFrame({"frame_id": interp_F,
+                                            "agent_id": agent_id,
+                                            "pos_x": interp_X_,
+                                            "pos_y": interp_Y_})])
+        # if ii > 1000: # TODO: REMOVE!!
+        #     break
     raw_dataset = raw_dataset.reset_index()
     # homog = []
     # homog_file = kwargs.get("homog_file", "")
